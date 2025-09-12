@@ -7,13 +7,13 @@ import ServicesSection from "@/components/sevrices";
 import EventsSection from "@/components/events";
 export default function Home() {
   return (
-    <>
-    <Header/>
-    <Hero/>
-    <ServicesSection />
-    <EventsSection/>
-    <CompetitorsSection />
-    <Footer/>
-    </>
+    <main className="relative">
+      <Header />
+      <Hero />
+      <ServicesSection />
+      <EventsSection />
+      <CompetitorsSection />
+      <Footer />
+    </main>
   );
 }
