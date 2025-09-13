@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import ServiceCard from "./serviceCard";
+import { FaPlane,FaHotel, FaMapMarkedAlt,FaPassport } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -9,20 +11,32 @@ import "swiper/css/pagination";
 export default function ServicesSection() {
   const services = [
     {
-      title: "Web Development",
-      img: "/img/images.jpg",
+      name: "Flight Booking",
+      icon: FaPlane,
+      image: "/img/category/icon1.png",
+      description: "Book flights worldwide with competitive prices and flexible schedules.",
+      hoverSvg:"/img/category/shape.svg",
     },
     {
-      title: "Mobile Apps",
-      img: "/img/image1.jpg",
+      name: "Hotel Reservation",
+      icon: FaMapMarkedAlt,
+      image: "/img/category/icon3.png",
+      description: "Find and book the best hotels with top amenities and great locations.",
+      hoverSvg:"/img/category/shape.svg",
     },
     {
-      title: "Cloud Solutions",
-      img: "/img/image2.jpg",
+      name: "Tour Packages",
+      icon: FaHotel,
+      image: "/img/category/icon2.png",
+      description: "Explore custom tour packages designed for your dream destinations.",
+      hoverSvg:"/img/category/shape.svg",
     },
     {
-      title: "UI/UX Design",
-      img: "/img/image3.jpg",
+      name: "Passport Visa & Migrations",
+      icon: FaPassport,
+      image: "/img/category/icon4.png",
+      description: "Explore custom tour packages designed for your dream destinations.",
+      hoverSvg:"/img/category/shape.svg",
     },
   ];
 
@@ -38,7 +52,7 @@ export default function ServicesSection() {
         viewport={{ once: true }}
         className="text-center space-y-3 mb-10"
       >
-        <h2 className="text-3xl font-bold text-green-600">Our Services</h2>
+        <h2 className="text-3xl font-bold text-orange-600">Our Services</h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
           We provide high-quality services tailored to meet your needs and help
           your business grow.
@@ -47,39 +61,25 @@ export default function ServicesSection() {
 
       {/* Carousel */}
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={30}
-        slidesPerView={1}
-        navigation
+        modules={[Pagination, Navigation, Autoplay]}
+        spaceBetween={20}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        navigation
+        autoplay={{
+          delay: 3000, // 3s per slide
+          disableOnInteraction: false, // keeps autoplay after user interaction
+        }}
+        loop={false} // infinite loop
         breakpoints={{
           640: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        className="pb-10"
+        className="pb-10 mySwiper"
       >
-        {services.map((service, i) => (
-          <SwiperSlide key={i}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition"
-            >
-              <img
-                src={service.img}
-                alt={service.title}
-                className="w-full h-56 object-cover"
-              />
-              <div className="p-4 text-center">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {service.title}
-                </h3>
-              </div>
-            </motion.div>
+        {services.map((service, index) => (
+          <SwiperSlide key={index}>
+            <ServiceCard {...service} />
           </SwiperSlide>
         ))}
       </Swiper>

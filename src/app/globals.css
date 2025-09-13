@@ -28,3 +28,36 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Change arrow color */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #ff5100; /* Tailwind's green-500 */
+  font-size: 24px; /* optional: resize arrows */
+  font-weight: bold;
+}
+
+/* Optional: background circle for arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  background: rgba(255, 123, 0, 0.5);
+  padding: 12px;
+  border-radius: 9999px; /* fully rounded */
+}
+
+.hero-title {
+  position: relative; /* needed for ::before */
+}
+
+.hero-title::before {
+  content: '';
+  position: absolute;
+  left: 0.02rem;  /* ~15px */
+  top: 3.5rem;       /* ~40px */
+  width: 20rem;      /* ~320px */
+  height: 0.8125rem; /* ~13px */
+  background-image: url('/img/hero/shape.svg'); /* use /public path */
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+}

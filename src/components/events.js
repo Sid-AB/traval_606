@@ -38,14 +38,14 @@ export default function EventsSection() {
         viewport={{ once: true }}
         className="text-center space-y-3 mb-10"
       >
-        <h2 className="text-3xl font-bold text-green-600">Our Events</h2>
+        <h2 className="text-3xl font-bold text-orange-600">Our Events</h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
           A journey through some of our most important milestones.
         </p>
       </motion.div>
 
       {/* Timeline */}
-      <div className="relative border-l-4 border-green-500 pl-8 space-y-12">
+      <div className="relative border-l-4 border-orange-500 pl-8 space-y-12">
         {events.map((event, i) => (
           <motion.div
             key={i}
@@ -56,10 +56,10 @@ export default function EventsSection() {
             className="relative"
           >
             {/* Circle marker */}
-            <span className="absolute -left-5 top-2 w-8 h-8 rounded-full bg-green-500 border-4 border-white shadow-md"></span>
+            <span className="absolute -left-5 top-2 w-8 h-8 rounded-full bg-orange-500 border-4 border-white shadow-md"></span>
 
             <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition">
-              <span className="text-sm text-green-600 font-semibold">
+              <span className="text-sm text-orange-600 font-semibold">
                 {event.year}
               </span>
               <h3 className="text-lg font-bold text-gray-800 mt-1">

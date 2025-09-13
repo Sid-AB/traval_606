@@ -7,51 +7,62 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 ">
         <img
-          src="/img/logo.jpg"
+          src="/img/hero/hero-bg.svg"
           alt="Background"
           className="w-full h-full object-cover"
         />
         {/* Overlay */}
         <motion.div
         initial={{ opacity: 0.7 }}
-        animate={{ opacity: 0.8 }}
+        animate={{ opacity: 0 }}
         transition={{ duration: 1.2, ease: "easeInOut" }}
         className="absolute inset-0 bg-black"
       ></motion.div>
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
-        {/* Logo */}
-        <motion.img
-          src="/img/logo.jpg"
-          alt="Logo"
-          className="w-32 h-32 mb-6 rounded-lg"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
+       {/* Hero Content */}
+       <div className="relative z-10 flex items-center justify-center h-full px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-6xl">
+             {/* Right: Title + Subtitle */}
+             <motion.div
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="text-center md:text-left text-white flex flex-col gap-6"
+          >
 
-        {/* Title */}
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold mb-4"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
-          Welcome to <span className="text-green-400">MySite</span>
-        </motion.h1>
+            <h1 className="hero-title text-4xl md:text-6xl font-bold leading-tight text-black hero-title">
+              Welcome to <span className="text-orange-400" >HanaWyTours</span>
+            </h1>
+            <p className="text-lg md:text-xl max-w-xl text-black">
+              We provide the best services to grow your business and make your
+              events unforgettable.
+            </p>
+            <div className="mt-4">
+              <a
+                href="#services"
+                className="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-medium transition"
+              >
+                Explore Services
+              </a>
+            </div>
+          </motion.div>
+          {/* Left: Floating Image / Logo */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="flex justify-center"
+          >
+            <img
+              src="/img/hero/hero-img.png"
+              alt="Hero Logo"
+              className="w-full h-full rounded-2xl object-cover "
+            />
+          </motion.div>
 
-        {/* Subtitle */}
-        <motion.p
-          className="text-lg md:text-xl max-w-2xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        >
-          We provide the best services to grow your business and make your
-          events unforgettable.
-        </motion.p>
+       
+        </div>
       </div>
     </section>
   );

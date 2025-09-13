@@ -5,6 +5,7 @@ import Hero from "@/components/head_def";
 import CompetitorsSection from "@/components/parterns";
 import ServicesSection from "@/components/sevrices";
 import EventsSection from "@/components/events";
+import TripsList from "@/components/Trips";
 export default function Home() {
   return (
     <main className="relative">
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <ServicesSection />
       <EventsSection />
+      <TripsList />
       <CompetitorsSection />
       <Footer />
     </main>

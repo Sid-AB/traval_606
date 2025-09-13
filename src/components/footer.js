@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram ,FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
   const links = [
@@ -21,7 +21,7 @@ export default function Footer() {
           transition={{ duration: 0.5 }}
           className="space-y-2"
         >
-          <h2 className="text-2xl font-bold text-green-500">MySite</h2>
+          <h2 className="text-2xl font-bold text-orange-500">HanaWyTours</h2>
           <p className="text-sm text-gray-400">
             Delivering quality services and events with passion.
           </p>
@@ -39,7 +39,7 @@ export default function Footer() {
             <Link
               key={i}
               href={link.href}
-              className="hover:text-green-400 transition-colors"
+              className="hover:text-orange-400 transition-colors"
             >
               {link.name}
             </Link>
@@ -55,13 +55,13 @@ export default function Footer() {
         >
           <h3 className="text-lg font-semibold text-white">Follow Us</h3>
           <div className="flex space-x-4 text-xl">
-            <a href="#" className="hover:text-green-400">
+            <a href="#" className="hover:text-orange-400">
               <FaFacebook />
             </a>
-            <a href="#" className="hover:text-green-400">
-              <FaTwitter />
+            <a href="#" className="hover:text-orange-400">
+              <FaTiktok />
             </a>
-            <a href="#" className="hover:text-green-400">
+            <a href="#" className="hover:text-orange-400">
               <FaInstagram />
             </a>
           </div>
@@ -70,7 +70,7 @@ export default function Footer() {
 
       {/* Bottom text */}
       <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} MySite. All rights reserved.
+        © {new Date().getFullYear()} SIDAB. All rights reserved.
       </div>
     </footer>
   );

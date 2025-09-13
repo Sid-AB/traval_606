@@ -11,7 +11,7 @@ export default function ServicesCarousel() {
   return (
     <section className="py-16 bg-gray-100">
       <h2 className="text-3xl font-bold text-center mb-10">
-        Our <span className="text-green-600">Services</span>
+        Our <span className="text-orange-600">Services</span>
       </h2>
 
       <div className="max-w-6xl mx-auto px-6">
@@ -27,6 +27,7 @@ export default function ServicesCarousel() {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
+          className="mySwiper"
         >
           <SwiperSlide>
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">

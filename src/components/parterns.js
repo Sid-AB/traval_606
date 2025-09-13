@@ -39,7 +39,7 @@ export default function CompetitorsSection() {
         viewport={{ once: true }}
         className="text-center space-y-3 mb-10"
       >
-        <h2 className="text-3xl font-bold text-green-600">Why Choose Us</h2>
+        <h2 className="text-3xl font-bold text-orange-600">Why Choose Us</h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
           See how we compare against others in the industry.
         </p>
@@ -49,7 +49,7 @@ export default function CompetitorsSection() {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse shadow-lg rounded-xl overflow-hidden">
           <thead>
-            <tr className="bg-green-600 text-white text-left">
+            <tr className="bg-orange-600 text-white text-left">
               <th className="py-4 px-6">Feature</th>
               <th className="py-4 px-6">Our Company</th>
               <th className="py-4 px-6">Competitors</th>

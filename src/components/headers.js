@@ -11,6 +11,7 @@ export default function Header() {
     { name: "Home", href: "home" },
     { name: "Services", href: "services" },
     { name: "Events", href: "events" },
+    { name: "Trips", href: "trips" },
     { name: "Contact Us", href: "contact" },
   ];
 
@@ -68,11 +69,15 @@ export default function Header() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`text-2xl font-bold transition-colors ${
-            scrollY > 150 ? "text-green-600" : "text-white"
+          className={`flex text-2xl font-bold transition-colors ${
+            scrollY > 150 ? "text-pink-400" : "text-orange-400"
           }`}
         >
-          MySite
+            <motion.img
+              src="/img/logo.jpg"
+              alt="Hero Logo"
+              className="w-8 h-8 rounded-2xl shadow-lg object-cover"/>
+         <p className="px-2"> HanaWyTours</p>
         </motion.div>
 
         {/* Desktop Menu */}
@@ -86,10 +91,10 @@ export default function Header() {
               transition={{ delay: i * 0.1 }}
               className={`relative font-medium transition-colors ${
                 active === link.href
-                  ? "text-green-600"
+                  ? "text-orange-400"
                   : scrollY > 150
-                  ? "text-gray-800 hover:text-green-600"
-                  : "text-white hover:text-green-400"
+                  ? "text-gray-800 hover:text-orange-600"
+                  : "text-black hover:text-orange-400"
               }`}
             >
               {link.name}
@@ -104,17 +109,17 @@ export default function Header() {
         >
           <span
             className={`w-6 h-0.5 transition-all ${
-              scrollY > 150 ? "bg-gray-800" : "bg-white"
+              scrollY > 150 ? "bg-gray-800" : "bg-black"
             }`}
           ></span>
           <span
             className={`w-6 h-0.5 transition-all ${
-              scrollY > 150 ? "bg-gray-800" : "bg-white"
+              scrollY > 150 ? "bg-gray-800" : "bg-black"
             }`}
           ></span>
           <span
             className={`w-6 h-0.5 transition-all ${
-              scrollY > 150 ? "bg-gray-800" : "bg-white"
+              scrollY > 150 ? "bg-gray-800" : "bg-black"
             }`}
           ></span>
         </button>
@@ -140,7 +145,7 @@ export default function Header() {
               transition={{ duration: 0.3 }}
               className={`fixed top-16 left-0 right-0 z-50 md:hidden flex flex-col space-y-4 px-6 py-6 ${
                 scrollY > 150
-                  ? "bg-white/90 backdrop-blur-md text-gray-800"
+                  ? "bg-black/90 backdrop-blur-md text-gray-800"
                   : "bg-black/90 text-white"
               }`}
             >
