@@ -45,6 +45,19 @@ html {
   border-radius: 9999px; /* fully rounded */
 }
 
+.swiper-navigation-icon
+{
+  color: black;
+}
+.swiper-pagination-bullet-active
+{
+  background-color: #0a0a0a;
+  color: #0a0a0a;
+}
+.swiper-pagination-bullet
+{
+  color: #0a0a0a;
+}
 .hero-title {
   position: relative; /* needed for ::before */
 }
