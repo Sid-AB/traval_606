@@ -1,9 +1,17 @@
 "use client";
 import React from "react";
-
+import { motion } from "framer-motion";
 export default function TripCard({ image, destination, price, days, onBook }) {
   return (
     <article className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+            <motion.div
+      initial={{ opacity: 0, y: 30 }}       // start faded & slightly down
+      whileInView={{ opacity: 1, y: 0 }}    // animate in when visible
+      viewport={{ once: true, amount: 0.2 }} // trigger only once
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      whileHover={{ scale: 1.03 }}           // small zoom on hover
+      className="relative bg-white rounded-lg shadow-md overflow-hidden group cursor-pointer"
+    >
       {/* Image wrapper */}
       <div className="relative h-48 sm:h-56 md:h-44 lg:h-52 overflow-hidden">
         <img
@@ -60,6 +68,7 @@ export default function TripCard({ image, destination, price, days, onBook }) {
           </button>
         </div>
       </div>
+      </motion.div>
     </article>
   );
 }

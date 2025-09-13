@@ -79,7 +79,14 @@ export default function ServicesSection() {
       >
         {services.map((service, index) => (
           <SwiperSlide key={index}>
-            <ServiceCard {...service} />
+            <motion.div
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.6 }}
+             viewport={{ once: true }}
+            >
+              <ServiceCard {...service} />
+            </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
