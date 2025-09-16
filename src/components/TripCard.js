@@ -21,9 +21,14 @@ export default function TripCard({ image, destination, price, days, onBook }) {
           loading="lazy"
         />
         {/* Price badge */}
-        <div className="absolute top-3 right-3 bg-white/90 text-gray-900 font-semibold px-3 py-1 rounded-lg shadow-sm backdrop-blur-sm">
-          ${price}
-        </div>
+        <div
+  className="absolute top-3 right-3 
+             text-white font-semibold 
+             px-3 py-1 rounded-lg shadow-sm backdrop-blur-sm
+             bg-gradient-to-r from-pink-500 to-orange-400"
+>
+  ${price}
+</div>
       </div>
 
       {/* Content */}
@@ -33,14 +38,14 @@ export default function TripCard({ image, destination, price, days, onBook }) {
             className="
               relative text-lg font-medium text-gray-800
               transition-colors duration-300
-              group-hover:text-orange-600 group-hover:font-bold
+              group-hover:text-pink-600 group-hover:font-bold
             "
           >
             {destination}
             {/* Underline */}
             <span
               className="
-                absolute left-0 -bottom-1 h-0.5 w-full bg-orange-600
+                absolute left-0 -bottom-1 h-0.5 w-full bg-pink-600
                 scale-x-0 group-hover:scale-x-100
                 transition-transform duration-300 origin-left
               "
@@ -61,7 +66,7 @@ export default function TripCard({ image, destination, price, days, onBook }) {
           </div>
           <button
             onClick={onBook}
-            className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium px-3 py-2 rounded-lg transition"
+            className="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white text-sm font-medium px-3 py-2 rounded-lg transition"
             aria-label={`Book trip to ${destination}`}
           >
             Book

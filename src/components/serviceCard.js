@@ -14,7 +14,7 @@ export default function ServiceCard({ icon: Icon, name, image, description ,hove
         />
         </div>
         {/* Icon Badge */}
-        <div className="absolute -bottom-0 left-6 bg-orange-600 text-white p-3 rounded-xl shadow-md">
+        <div className="absolute -bottom-0 left-6 bg-pink-600 text-white p-3 rounded-xl shadow-md">
           <Icon className="w-6 h-6" />
         </div>
       </div>
@@ -25,7 +25,7 @@ export default function ServiceCard({ icon: Icon, name, image, description ,hove
           className="
             text-lg font-semibold text-gray-800
             transition-colors duration-300
-            group-hover:text-orange-600
+            group-hover:text-pink-600
           "
         >
           {name}
@@ -40,7 +40,7 @@ export default function ServiceCard({ icon: Icon, name, image, description ,hove
           opacity-0 translate-y-3
           group-hover:opacity-100 group-hover:translate-y-0
           transition-all duration-500 ease-out
-          text-orange-600
+          text-pink-600
         "
       >
         <img

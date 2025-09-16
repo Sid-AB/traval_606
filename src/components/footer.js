@@ -21,7 +21,7 @@ export default function Footer() {
           transition={{ duration: 0.5 }}
           className="space-y-2"
         >
-          <h2 className="text-2xl font-bold text-orange-500">HanaWyTours</h2>
+          <h2 className="text-2xl font-bold text-pink-500">HanaWyTours</h2>
           <p className="text-sm text-gray-400">
             Delivering quality services and events with passion.
           </p>
@@ -39,7 +39,7 @@ export default function Footer() {
             <Link
               key={i}
               href={link.href}
-              className="hover:text-orange-400 transition-colors"
+              className="hover:text-pink-400 transition-colors"
             >
               {link.name}
             </Link>
@@ -55,13 +55,13 @@ export default function Footer() {
         >
           <h3 className="text-lg font-semibold text-white">Follow Us</h3>
           <div className="flex space-x-4 text-xl">
-            <a href="#" className="hover:text-orange-400">
+            <a href="#" className="hover:text-pink-400">
               <FaFacebook />
             </a>
-            <a href="#" className="hover:text-orange-400">
+            <a href="#" className="hover:text-pink-400">
               <FaTiktok />
             </a>
-            <a href="#" className="hover:text-orange-400">
+            <a href="#" className="hover:text-pink-400">
               <FaInstagram />
             </a>
           </div>

@@ -10,7 +10,7 @@ export default function Header() {
   const links = [
     { name: "Home", href: "home" },
     { name: "Services", href: "services" },
-    { name: "Events", href: "events" },
+   // { name: "Events", href: "events" },
     { name: "Trips", href: "trips" },
     { name: "Contact Us", href: "contact" },
   ];
@@ -91,10 +91,10 @@ export default function Header() {
               transition={{ delay: i * 0.1 }}
               className={`relative font-medium transition-colors ${
                 active === link.href
-                  ? "text-orange-400"
+                  ?  scrollY < 200 ?"text-white":"text-pink-400"
                   : scrollY > 150
-                  ? "text-gray-800 hover:text-orange-600"
-                  : "text-black hover:text-orange-400"
+                  ? "text-gray-800 hover:text-pink-600"
+                  : "text-black hover:text-pink-400"
               }`}
             >
               {link.name}

@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --rotate-speed: 40;
+	--count: 8; /* Default count, the DOM element should override this */
+	--easeInOutSine: cubic-bezier(0.37, 0, 0.63, 1);
+	--easing: cubic-bezier(0.000, 0.37, 1.000, 0.63);
 }
 
 @theme inline {
@@ -32,7 +36,7 @@ html {
 /* Change arrow color */
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: #ff5100; /* Tailwind's green-500 */
+  color: #ff00ea; /* Tailwind's green-500 */
   font-size: 24px; /* optional: resize arrows */
   font-weight: bold;
 }
@@ -40,7 +44,7 @@ html {
 /* Optional: background circle for arrows */
 .swiper-button-next,
 .swiper-button-prev {
-  background: rgba(255, 123, 0, 0.5);
+  background: #ff00ea;
   padding: 12px;
   border-radius: 9999px; /* fully rounded */
 }
@@ -74,3 +78,43 @@ html {
   background-repeat: no-repeat;
   z-index: -1;
 }
+
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6),
+                0 0 20px rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.9),
+                0 0 40px rgba(34, 197, 94, 0.6);
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+} 

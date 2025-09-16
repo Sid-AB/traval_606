@@ -52,7 +52,7 @@ export default function ServicesSection() {
         viewport={{ once: true }}
         className="text-center space-y-3 mb-10"
       >
-        <h2 className="text-3xl font-bold text-orange-600">Our Services</h2>
+        <h2 className="text-3xl font-bold text-pink-600">Our Services</h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
           We provide high-quality services tailored to meet your needs and help
           your business grow.

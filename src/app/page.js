@@ -7,6 +7,7 @@ import ServicesSection from "@/components/sevrices";
 import EventsSection from "@/components/events";
 import TripsList from "@/components/Trips";
 import Partners from "@/components/collabor";
+import WhatsAppButton from "@/components/contactFloating";
 export default function Home() {
   return (
     <main className="relative">
@@ -17,6 +18,7 @@ export default function Home() {
       <TripsList />
       <Partners />
       <CompetitorsSection />
+      <WhatsAppButton />
       <Footer />
     </main>
   );
