@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-//import CustemCarsoul from "./verticalCustomes";
+import CustemCarsoul from "./verticalCustomes";
 export default function Hero() {
   return (
     <section id="home" className="relative h-screen w-full">
@@ -25,7 +25,15 @@ export default function Hero() {
   <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center w-full max-w-7xl">*/}
 <div className="relative z-10 flex items-center justify-center h-full px-6"> 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-6xl">
-    {/* Left: Title + Subtitle */}
+        <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="flex justify-center w-full"
+    >
+      <CustemCarsoul />
+    </motion.div>
+    {/* Left: Title + Subtitle
     <motion.div
       initial={{ x: -50, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
@@ -48,7 +56,7 @@ export default function Hero() {
         </a>
       </div>
     </motion.div>
-
+ */}
     {/* Center: Carousel3D
     <motion.div
       initial={{ opacity: 0 }}

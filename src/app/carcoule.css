@@ -8,10 +8,10 @@
 	position: relative;
 	aspect-ratio: 1 / 1;
 }
-ul:hover * {
+.void ul:hover * {
 	animation-play-state: paused;
 }
-ul {
+.void ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -21,7 +21,7 @@ ul {
 	outline: 2px dotted magenta;
 	z-index: 1;
 }
-li {
+.void li {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -29,7 +29,7 @@ li {
 	width: 100%;
 	animation: rotateCW calc(var(--rotate-speed) * 1s) var(--easing) infinite;
 }
-.card {
+.void .card {
 	width: 27%;
 	display: flex;
 	flex-direction: column;
@@ -47,7 +47,7 @@ li {
 	color: #535062;
 	animation: rotateCCW calc(var(--rotate-speed) * 1s) var(--easing) infinite;
 }
-a {
+.void a {
 	text-decoration: none;
 	color: unset;
 }
@@ -58,32 +58,32 @@ a {
 	color: #3B2ED0;
 	display: block;
 }
-svg {
+.void svg {
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 0;
 }
 
-li:nth-child(2), li:nth-child(2) .card {
+.void li:nth-child(2), li:nth-child(2) .card {
 	animation-delay: calc((var(--rotate-speed)/var(--count)) * -1s);
 }
-li:nth-child(3), li:nth-child(3) .card {
+.void li:nth-child(3), li:nth-child(3) .card {
 	animation-delay: calc((var(--rotate-speed)/var(--count)) * -2s);
 }
-li:nth-child(4), li:nth-child(4) .card {
+.void li:nth-child(4), li:nth-child(4) .card {
 	animation-delay: calc((var(--rotate-speed)/var(--count)) * -3s);
 }
-li:nth-child(5), li:nth-child(5) .card {
+.void li:nth-child(5), li:nth-child(5) .card {
 	animation-delay: calc((var(--rotate-speed)/var(--count)) * -4s);
 }
-li:nth-child(6), li:nth-child(6) .card {
+.void li:nth-child(6), li:nth-child(6) .card {
 	animation-delay: calc((var(--rotate-speed)/var(--count)) * -5s);
 }
-li:nth-child(7), li:nth-child(7) .card {
+.void li:nth-child(7), li:nth-child(7) .card {
 	animation-delay: calc((var(--rotate-speed)/var(--count)) * -6s);
 }
-li:nth-child(8), li:nth-child(8) .card {
+.void li:nth-child(8), li:nth-child(8) .card {
 	animation-delay: calc((var(--rotate-speed)/var(--count)) * -7s);
 }
 

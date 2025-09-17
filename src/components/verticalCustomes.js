@@ -3,12 +3,12 @@ import '../app/carcoule.css';
  export  default function CustemCarsoul()
 {
     const cards = [
-        { name: "Gretel-ACTGAN", desc: "Model for generating highly dimensional, mostly numeric, tabular data" },
-        { name: "Model-2", desc: "Another model description" },
-        { name: "Model-3", desc: "Another model description" },
-        { name: "Model-4", desc: "Another model description" },
-        { name: "Model-5", desc: "Another model description" },
-        { name: "Model-6", desc: "Another model description" },
+        { name: "Gretel-ACTGAN", desc: "Model for generating highly dimensional, mostly numeric, tabular data" ,id:"services" },
+        { name: "Model-2", desc: "Another model description" ,id:"services"},
+        { name: "Model-3", desc: "Another model description" ,id:"services"},
+        { name: "Model-4", desc: "Another model description",id:"services" },
+        { name: "Model-5", desc: "Another model description",id:"services" },
+        { name: "Model-6", desc: "Another model description" ,id:"services"},
       ];
     
       return (
@@ -18,7 +18,7 @@ import '../app/carcoule.css';
               {cards.map((card, i) => (
                 <li key={i}>
                   <div className="card">
-                    <a href="#">
+                    <a href={`#${card.id}`} >
                       <span className="model-name">{card.name}</span>
                       <span>{card.desc}</span>
                     </a>

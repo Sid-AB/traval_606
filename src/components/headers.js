@@ -70,7 +70,7 @@ export default function Header() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className={`flex text-2xl font-bold transition-colors ${
-            scrollY > 150 ? "text-pink-400" : "text-orange-400"
+            scrollY > 150 ? "text-pink-400" : "text-pink-500"
           }`}
         >
             <motion.img
