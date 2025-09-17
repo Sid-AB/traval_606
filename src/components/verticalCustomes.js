@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import '../app/carcoule.css';
  export  default function CustemCarsoul()
 {
@@ -30,7 +31,18 @@ import '../app/carcoule.css';
             <div className="second-circle"></div>
           </div>
           <div className="mask"></div>
-          <div className="center-circle"></div>
+          <motion.div className="center-circle">
+          
+            <motion.div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                  <motion.img
+              src="/img/logo.jpg"
+              alt="Hero Logo"
+              className="w-32 h-32 rounded-2xl shadow-lg object-cover"
+                   />
+               <p className="px-2 text-center mt-2 model-name">Welcome</p>
+           </motion.div>
+          </motion.div>
+          
         </div>
       );
     }
