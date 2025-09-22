@@ -29,6 +29,14 @@ export default function TripCard({ image, destination, price, days, onBook }) {
 >
   ${price}
 </div>
+    <div
+     className="absolute bottom-3 right-3 
+     text-white font-semibold 
+     px-3 py-1 rounded-lg shadow-sm backdrop-blur-sm
+     bg-gradient-to-r from-pink-500 to-orange-400"
+    >
+      package info
+    </div>
       </div>
 
       {/* Content */}
