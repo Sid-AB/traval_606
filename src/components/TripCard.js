@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-export default function TripCard({ image, destination, price, days, onBook }) {
+export default function TripCard({ image, descrip,package_info,destination, price, days, onBook }) {
   return (
     <article className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
             <motion.div
@@ -27,7 +27,7 @@ export default function TripCard({ image, destination, price, days, onBook }) {
              px-3 py-1 rounded-lg shadow-sm backdrop-blur-sm
              bg-gradient-to-r from-pink-500 to-orange-400"
 >
-  ${price}
+  {price} DZ
 </div>
     <div
      className="absolute bottom-3 right-3 
@@ -35,7 +35,7 @@ export default function TripCard({ image, destination, price, days, onBook }) {
      px-3 py-1 rounded-lg shadow-sm backdrop-blur-sm
      bg-gradient-to-r from-pink-500 to-orange-400"
     >
-      package info
+      {package_info}
     </div>
       </div>
 
@@ -65,7 +65,7 @@ export default function TripCard({ image, destination, price, days, onBook }) {
         </div>
 
         <p className="text-sm text-gray-600">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, praesentium.
+          {descrip}.
         </p>
 
         <div className="mt-2 flex items-center justify-between">
