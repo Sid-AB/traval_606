@@ -3,13 +3,15 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import ServiceCard from "./serviceCard";
-import { FaPlane,FaHotel, FaMapMarkedAlt,FaPassport } from "react-icons/fa";
+import { FaPlane,FaHotel, FaMapMarkedAlt,FaPassport,FaBus } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useState,useEffect} from "react";
 
 export default function ServicesSection() {
-  const services = [
+
+  const [services,setServices] = useState ([
     {
       name: "Flight Booking",
       icon: FaPlane,
@@ -38,7 +40,69 @@ export default function ServicesSection() {
       description: "Explore custom tour packages designed for your dream destinations.",
       hoverSvg:"/img/category/shape.svg",
     },
-  ];
+  ]);
+
+
+  function ServiceIcon({ name }) {
+    const lower = name.toLowerCase();
+
+    if (lower.includes("trip")) {
+      return FaPlane ;
+    } else if (lower.includes("hotel")) {
+      return FaHotel ;
+    } else if (lower.includes("visa")) {
+      return FaPassport 
+    } else if (lower.includes("transport") || lower.includes("bus")) {
+      return FaBus;
+    } else {
+      return FaMapMarkedAlt;
+    }
+  }
+  useEffect(()=>{
+    fetch("http://127.0.0.1:8000/api/services/",{
+      headers: { "Accept": "application/json" },
+  }) // your backend URL
+    .then((res) => res.json())
+    .then((data) => {
+     // console.log(JSON.stringify(data))
+     const mapped = data.map(item => {
+      var file;
+      if(item.images.length > 0)
+      {
+        file="http://127.0.0.1:8000"+item.images[0].file
+      }
+      else
+      {
+        file="/img/category/icon4.png"
+      }
+      console.log('type '+typeof(item.id_cat.nom_categorie) )
+
+      const lower = item.id_cat.nom_categorie.toLowerCase();
+      var icons=FaMapMarkedAlt
+    if (lower.includes("trip")|| lower.includes("summer") || lower.includes("travel") || lower.includes("flight") || lower.includes("flights")) {
+      icons = FaPlane ;
+    } else if (lower.includes("hotel")|| lower.includes("booking") || lower.includes("book")) {
+      icons = FaHotel ;
+    } else if (lower.includes("visa")) {
+      icons = FaPassport 
+    } else if (lower.includes("transport") || lower.includes("bus")) {
+      icons = FaBus;
+    } else {
+      icons = FaMapMarkedAlt;
+    }
+    
+      return ({
+      id:item.id_service,
+      name: item.nom_service,
+      image: file,
+      icon:icons,
+      description:item.descrip_service,
+      hoverSvg:"/img/category/shape.svg",
+      })});
+      setServices(mapped)
+    })
+    .catch((err) => console.error(err));
+  },[])
 
   return (
     <section

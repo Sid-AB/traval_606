@@ -79,7 +79,7 @@ export default function TripsList() {
       id: item.id_package,
       image: file,
       descrip:item.description_package,
-      destination: "Tokyo, Japan",
+      destination: item.vols.nom_vol,
       price: item.prix_package,
       package_info:item.nom_package,
       days: item.duree,
