@@ -70,7 +70,7 @@ export default function TripCard({ image, descrip,package_info,destination, pric
 
         <div className="mt-2 flex items-center justify-between">
           <div className="text-sm text-gray-500">
-            From <span className="font-medium text-gray-800">${price}</span>
+            From <span className="font-medium text-gray-800">{price} DZ</span>
           </div>
           <button
             onClick={onBook}

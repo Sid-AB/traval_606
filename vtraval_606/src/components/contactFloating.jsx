@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function WhatsAppButton() {
-  const phoneNumber = "212600000000"; // 👉 replace with your WhatsApp number
+  const phoneNumber = "+213770676392"; // 👉 replace with your WhatsApp number
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]); // { text, sender: "user" | "bot" }
   const [open, setOpen] = useState(false);

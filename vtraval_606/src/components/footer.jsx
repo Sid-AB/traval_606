@@ -5,12 +5,12 @@ import { FaFacebook, FaTwitter, FaInstagram ,FaTiktok ,FaHeadphones ,FaHome ,FaM
 
 export default function Footer() {
   const links = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "Events", href: "/events" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Home", href: "#" },
+    { name: "Services", href: "#services" },
+    { name: "Events", href: "#events" },
+    { name: "Contact Us", href: "#contact" },
   ];
-
+  const phone=["659 30 55 77","770 67 63 92","770 19 54 09","43 43 04 04"]
   return (
     <footer id="contact" className="bg-gray-900 text-gray-300 py-10 mt-16">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
@@ -55,26 +55,34 @@ export default function Footer() {
         >
           <h3 className="text-lg font-semibold text-white">Follow Us</h3>
           <div className="flex space-x-4 text-xl">
-            <a href="#" className="hover:text-pink-400">
+            <a href="https://www.facebook.com/profile.php?id=100057628712187" className="hover:text-pink-400" target="_blank">
               <FaFacebook />
             </a>
-            <a href="#" className="hover:text-pink-400">
+            <a href="https://tiktok.com/@Hanawy.tours" className="hover:text-pink-400" target="_blank">
               <FaTiktok />
             </a>
-            <a href="#" className="hover:text-pink-400">
+            <a href="https://instagram.com/Hanawytours" className="hover:text-pink-400" target="_blank">
               <FaInstagram />
             </a>
           </div>
           <div className="flex flex-col space-y-3">
             <p className="text-lg font-semibold text-white">Contacts US</p>
-          <a href="#" className="hover:text-pink-400 flex ">
-              <FaHeadphones className="text-xl"/><p className="px-1"> +213000000000</p>
+          <FaHeadphones className="text-xl"/> 
+          {phone.map((e, index) => (
+            <a 
+              key={index} 
+              href={`phoneto:`+e }
+              className="hover:text-pink-400 flex items-center"
+            >
+              <p className="px-1">+213 {e}</p>
             </a>
+          ))}
+            
             <a href="#" className="hover:text-pink-400 flex ">
               <FaHome className="text-3xl"/><p className="px-1">Local N°01 lot de propriete N°02.section 073, REMCHT-TLEMCEN (13000)</p>
             </a>
-            <a href="#" className="hover:text-pink-400 flex ">
-              <FaMailBulk className="text-xl"/><p className="px-1">Hanaa.bensaada@gmail.com</p>
+            <a href="mailto:service@hanawytours.dz" className="hover:text-pink-400 flex ">
+              <FaMailBulk className="text-xl"/><p className="px-1">service@hanawytours.dz</p>
             </a>
         </div>
         </motion.div>
