@@ -2,7 +2,7 @@
 import React ,{useState,useEffect}from "react";
 import TripCard from "./TripCard";
 import ModelInfo from "./modelPack";
-
+import { X } from "lucide-react";
 const sampleTrips = [
   {
     id: 1,
@@ -123,9 +123,9 @@ export default function TripsList() {
           <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-7xl max-h-[95vh] overflow-y-auto">
             <button
               onClick={() => setShowInfo(false)}
-              className="absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1"
+              className="absolute top-2 right-0 bg-gray-200 hover:bg-gray-300 rounded-full px-1 py-1"
             >
-              ✕
+              <X className="z-100"/>
             </button>
             <ModelInfo idpack={packid} onClose={()=>setPack(null)}/>
           </div>

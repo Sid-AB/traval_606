@@ -24,41 +24,46 @@ import {
 export default function ModelInfo({ idpack,onClose }) {
   const [index, setIndex] = useState(0);
 const [trip,setTrip]=useState( {
-    destination: "Algiers - Oran roundtrip",
-    departureDate: "2025-10-01",
-    returnDate: "2025-10-08",
-    duration: "7 days",
-    airline: "Air Algeria",
-    price: 120000,
-    description:"A comfortable roundtrip with hotel and guided tours included. Perfect for families and groups.",
+    nom_package:"",
+    date_debut_package: "2025-10-01",
+    date_fin_package: "2025-10-08",
+    duree: "7 days",
+    prix_package: 120000,
+    description_package:"A comfortable roundtrip with hotel and guided tours included. Perfect for families and groups.",
+    description_package_ar:"A comfortable roundtrip with hotel and guided tours included. Perfect for families and groups.",
   
-  services: [
-    { id: 1, name: "Hotel (4*)", description: "Breakfast included", price: 40000 },
-    { id: 2, name: "Guided Tours", description: "City + Museums", price: 20000 },
-    { id: 3, name: "Airport Transfer", description: "Private car both ways", price: 8000 },
-    { id: 4, name: "Meals Package", description: "3 meals/day", price: 15000 },
+  service: [
+    { id_service: 1, nom_service: "Hotel (4*)", descrip_service: "Breakfast included", prix_service: 40000,id_cat:[],id_type:[] },
+    { id_service: 2, nom_service: "Guided Tours", descrip_service: "City + Museums", prix_service: 20000 ,id_cat:[],id_type:[]},
+    { id_service: 3, nom_service: "Airport Transfer", descrip_service: "Private car both ways", prix_service: 8000 ,id_cat:[],id_type:[]},
+    { id_service: 4, nom_service: "Meals Package", descrip_service: "3 meals/day", prix_service: 15000 ,id_cat:[],id_type:[]},
   ],
-  photos : [
+  images : [
     "/img/trip1.jpg",
     "/img/trip2.jpg",
     "/img/trip3.jpg",
     "/img/trip4.jpg",
   ],
-  agency : {
+  vols:[]
+})
+
+  const next = () => setIndex((i) => (i + 1) % trip.images.length);
+  const prev = () => setIndex((i) => (i - 1 + trip.images.length) % images.length);
+  const [agency,setAgency]=useState({
     name: "Hanawy Tours",
     logoUrl: "/img/logo.jpg",
     footerText: "© 2025 Hanawy Tours — All rights reserved",
-  },
-})
+  },)
 
-  const next = () => setIndex((i) => (i + 1) % trip.photos.length);
-  const prev = () => setIndex((i) => (i - 1 + trip.photos.length) % photos.length);
-
-  const totalServices = trip.services.reduce((s, a) => s + a.price, 0);
-  const grandTotal = trip.price + totalServices;
+  const [totalServices,setTotalservices] =useState(0);
+  const [Totafilght,setTotalflight] = useState( 0)
+  const [grandTotal,setGrandTotal] = useState(0);
 
   // Recharts data (services breakdown)
-  const chartData = trip.services.map((s) => ({ name: s.name, value: s.price }));
+  const [existSevice,setExistservice]=useState(false)
+  const [existVol,setExistvol]=useState(false)
+  const [existImg,setExistimg]=useState(false)
+  const [chartData,setChartdata] = useState({ name:"", value: 0 });
   const COLORS = ["#3B82F6", "#F97316", "#10B981", "#F43F5E", "#A78BFA"];
 
 
@@ -74,8 +79,41 @@ const [timeoutReached, setTimeoutReached] = useState(false);
   }) // your backend URL
     .then((res) => res.json())
     .then((data) => {
+        setTrip(data[0])
+
+        if(data[0].service.length > 0)
+            {
+            setTotalservices(data[0].service.reduce((s, a) => s + parseFloat(a.prix_service), 0));
+            setChartdata(data[0].service.map((s) => ({ name: s.nom_service, value: s.prix_service })));
+            setExistservice(true)
+            }
+            else
+            {
+            setTotalservices(0)
+            setChartdata({ name:"", value: 0 })
+            setExistservice(false)
+            }
+            if(data[0].vols !== null && data[0].vols !== undefined)
+            {
+            setTotalflight( parseFloat(data[0].vols.prix_vol))
+            setExistvol(true)
+            }
+            else
+            {
+            setTotalflight(0)
+            setExistvol(false)
+            }
+            if(data[0].images.length == 0)
+            {
+                setExistimg(false)
+            }
+        setGrandTotal(parseFloat(data[0].prix_package) + totalServices + Totafilght);
+
          setLoading(false);
     }).catch(()=>{
+        setExistimg(false)
+        setExistservice(false)
+        setExistvol(false)
         setLoading(false);
     })
 
@@ -88,15 +126,15 @@ const [timeoutReached, setTimeoutReached] = useState(false);
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
         {/* Left: Trip info */}
         <div className="md:col-span-4 bg-white rounded-xl shadow p-6">
-          <h2 className="text-2xl font-semibold mb-3">{trip.destination}</h2>
-          <p className="text-sm text-gray-600 mb-4">{trip.description}</p>
+          <h2 className="text-2xl font-semibold mb-3">{existVol ??(trip.vols.nom_vol)} - {trip.nom_package}</h2>
+          <p className="text-sm text-gray-600 mb-4">{trip.description_package}</p>
 
           <div className="space-y-3">
             <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5 text-pink-500" />
               <div>
                 <div className="text-xs text-gray-500">Destination</div>
-                <div className="font-medium">{trip.destination}</div>
+                <div className="font-medium">{existVol ??(trip.vols.nom_vol)}</div>
               </div>
             </div>
 
@@ -104,7 +142,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
               <Calendar className="w-5 h-5 text-indigo-500" />
               <div>
                 <div className="text-xs text-gray-500">Departure</div>
-                <div className="font-medium">{trip.departureDate}</div>
+                <div className="font-medium">{trip.date_debut_package}</div>
               </div>
             </div>
 
@@ -112,7 +150,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
               <Clock className="w-5 h-5 text-yellow-500" />
               <div>
                 <div className="text-xs text-gray-500">Duration</div>
-                <div className="font-medium">{trip.duration}</div>
+                <div className="font-medium">{trip.duree}</div>
               </div>
             </div>
 
@@ -120,7 +158,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
               <Plane  className="w-5 h-5 text-green-500" />
               <div>
                 <div className="text-xs text-gray-500">Airline</div>
-                <div className="font-medium">{trip.airline}</div>
+                <div className="font-medium">Air Algerie</div>
               </div>
             </div>
 
@@ -128,7 +166,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
               <Tag className="w-5 h-5 text-pink-600" />
               <div>
                 <div className="text-xs text-gray-500">Price (flight)</div>
-                <div className="font-semibold text-lg">DZD {trip.price.toLocaleString()}</div>
+                <div className="font-semibold text-lg">DZD {existVol ?(trip.vols.prix_vol):('00.00')}</div>
               </div>
 
             </div>
@@ -142,7 +180,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
 
             <div className="py-2">
                 <img
-                src={trip.agency.logoUrl} alt="agency logo"/>
+                src={agency.logoUrl} alt="agency logo"/>
             </div>
 
         </div>
@@ -151,32 +189,39 @@ const [timeoutReached, setTimeoutReached] = useState(false);
         <div className="md:col-span-4 bg-white rounded-xl shadow p-6">
           <h3 className="text-xl font-semibold mb-4">Included Services</h3>
 
-          <div className="space-y-3">
-            {trip.services.map((s) => (
+         {existSevice ? ( <div className="space-y-3">
+            {trip.service.map((s) => (
               <motion.div
-                key={s.id}
+                key={s.id_service}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
                 className="border rounded-lg p-3 flex justify-between items-start"
               >
                 <div>
-                  <div className="font-medium">{s.name}</div>
-                  <div className="text-sm text-gray-500">{s.description}</div>
+                  <div className="font-medium">{s.nom_service}</div>
+                  <div className="text-sm text-gray-500"><b>{s.id_cat.nom_categorie}</b>{s.id_cat.description_categorie}</div>
                 </div>
                 <div className="text-right">
                   <div className="text-sm text-gray-500">Price</div>
-                  <div className="font-semibold">DZD {s.price.toLocaleString()}</div>
+                  <div className="font-semibold">DZD {s.prix_service.toLocaleString()}</div>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </div>):(<div className="space-y-3"><motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="border rounded-lg p-3 flex justify-between items-start"
+              >
+                <h1>No Services Are Included</h1>
+              </motion.div> </div>)}
 
           <div className="mt-6">
             <div className="text-sm text-gray-500">Services total</div>
             <div className="font-bold text-lg">DZD {totalServices.toLocaleString()}</div>
 
-            <div className="mt-4 h-48">
+            {existSevice ??(<div className="mt-4 h-48">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} layout="vertical">
                   <XAxis type="number" hide />
@@ -189,7 +234,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
-            </div>
+            </div>)}
           </div>
         </div>
 
@@ -198,8 +243,8 @@ const [timeoutReached, setTimeoutReached] = useState(false);
           <div className="relative w-full h-64 md:h-80 overflow-hidden rounded-lg">
             <AnimatePresence initial={false} mode="wait">
               <motion.img
-                key={trip.photos[index]}
-                src={trip.photos[index]}
+                key={existImg ?(trip.images[index]):1}
+                src={existImg ?("http://127.0.0.1:8000"+trip.images[index].file):'agency.logoUrl'}
                 alt={`photo-${index}`}
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -226,7 +271,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
           </div>
 
           <div className="mt-4 grid grid-cols-4 gap-2">
-            {trip.photos.map((p, i) => (
+            {existImg ?(trip.images.map((p, i) => (
               <button
                 key={p}
                 onClick={() => setIndex(i)}
@@ -234,9 +279,19 @@ const [timeoutReached, setTimeoutReached] = useState(false);
                   i === index ? "ring-2 ring-pink-400" : ""
                 }`}
               >
-                <img src={p} alt={`thumb-${i}`} className="w-full h-full object-cover" />
+                <img src={existImg ? ("http://127.0.0.1:8000"+p.file):(agency.logoUrl)} alt={`thumb-${i}`} className="w-full h-full object-cover" />
               </button>
-            ))}
+            ))):(
+                 <button
+                key={0}
+                onClick={() => setIndex(0)}
+                className={`h-16 rounded overflow-hidden border transition-transform transform hover:scale-105 ${
+                  0 === index ? "ring-2 ring-pink-400" : ""
+                }`}
+              >
+                <img src={agency.logoUrl} alt={`thumb-${0}`} className="w-full h-full object-cover" />
+              </button>
+            )}
           </div>
 
           <div className="mt-4 text-center text-sm text-gray-500">
@@ -247,11 +302,11 @@ const [timeoutReached, setTimeoutReached] = useState(false);
 
       {/* Bottom area: footer + logo */}
       <div className="mt-8 bg-white rounded-xl shadow p-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-sm text-gray-600">{trip.agency.footerText}</div>
+        <div className="text-sm text-gray-600">{agency.footerText}</div>
         <div className="flex items-center gap-4">
-          <img src={trip.agency.logoUrl} alt="agency logo" className="w-24 h-24 object-contain rounded" />
+          <img src={agency.logoUrl} alt="agency logo" className="w-24 h-24 object-contain rounded" />
           <div className="text-right">
-            <div className="font-semibold">{trip.agency.name}</div>
+            <div className="font-semibold">{agency.name}</div>
             <div className="text-xs text-gray-500">Contact: service@hanawytours.dz</div>
           </div>
         </div>
