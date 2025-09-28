@@ -55,15 +55,15 @@ const [trip,setTrip]=useState( {
     footerText: "© 2025 Hanawy Tours — All rights reserved",
   },)
 
-  const [totalServices,setTotalservices] =useState(0);
+  const [totalServices,setTotalservices] =useState(trip.service.reduce((s, a) => s + parseFloat(a.prix_service), 0));
   const [Totafilght,setTotalflight] = useState( 0)
   const [grandTotal,setGrandTotal] = useState(0);
 
   // Recharts data (services breakdown)
-  const [existSevice,setExistservice]=useState(false)
-  const [existVol,setExistvol]=useState(false)
-  const [existImg,setExistimg]=useState(false)
-  const [chartData,setChartdata] = useState({ name:"", value: 0 });
+  const [existSevice,setExistservice]=useState(true)
+  const [existVol,setExistvol]=useState(true)
+  const [existImg,setExistimg]=useState(true)
+  const [chartData,setChartdata] = useState(trip.service.map((s) => ({ name: s.nom_service, value: s.prix_service })));
   const COLORS = ["#3B82F6", "#F97316", "#10B981", "#F43F5E", "#A78BFA"];
 
 
@@ -126,7 +126,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
         {/* Left: Trip info */}
         <div className="md:col-span-4 bg-white rounded-xl shadow p-6">
-          <h2 className="text-2xl font-semibold mb-3">{existVol ??(trip.vols.nom_vol)} - {trip.nom_package}</h2>
+          <h2 className="text-2xl font-semibold mb-3">{existVol ?(trip.vols.nom_vol):('')} - {trip.nom_package}</h2>
           <p className="text-sm text-gray-600 mb-4">{trip.description_package}</p>
 
           <div className="space-y-3">
@@ -134,7 +134,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
               <MapPin className="w-5 h-5 text-pink-500" />
               <div>
                 <div className="text-xs text-gray-500">Destination</div>
-                <div className="font-medium">{existVol ??(trip.vols.nom_vol)}</div>
+                <div className="font-medium">{existVol ?(trip.vols.nom_vol):('')}</div>
               </div>
             </div>
 
@@ -221,7 +221,7 @@ const [timeoutReached, setTimeoutReached] = useState(false);
             <div className="text-sm text-gray-500">Services total</div>
             <div className="font-bold text-lg">DZD {totalServices.toLocaleString()}</div>
 
-            {existSevice ??(<div className="mt-4 h-48">
+            {existSevice ?(<div className="mt-4 h-48">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} layout="vertical">
                   <XAxis type="number" hide />
@@ -234,7 +234,14 @@ const [timeoutReached, setTimeoutReached] = useState(false);
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
-            </div>)}
+            </div>):(<div className="space-y-3"><motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="border rounded-lg p-3 flex justify-between items-start"
+              >
+                <h1>No Services Are Included</h1>
+              </motion.div> </div>)}
           </div>
         </div>
 

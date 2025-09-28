@@ -1,16 +1,19 @@
 "use client";
 import { motion } from "framer-motion";
 import CustemCarsoul from "./verticalCustomes";
+import Image from "next/image";
 export default function Hero() {
   return (
     <section id="home" className="relative h-screen w-full">
       {/* Background Image */}
       <div className="absolute inset-0 ">
-        <img
-          src="/img/hero/hero-bg.svg"
-          alt="Background"
-          className="w-full h-full object-cover"
-        />
+        <Image
+      src="/img/hero/hero-bg.svg"
+      alt="Background"
+      fill  // makes it cover its parent
+      className="object-cover"
+      priority
+    />
         {/* Overlay */}
         <motion.div
         initial={{ opacity: 0.7 }}
@@ -69,18 +72,20 @@ export default function Hero() {
 
     {/* Right: Floating Image / Logo (hidden on mobile) */}
     <motion.div
-      initial={{ x: 50, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 1, delay: 0.5 }}
-      className="hidden md:flex justify-center"
-    >
-      <img
-        src="/img/hero/hero-img.png"
-        alt="Hero Logo"
-       // className="w-full h-auto rounded-2xl object-cover max-w-sm"
-       className="w-full h-full rounded-2xl object-cover "
-      />
-    </motion.div>
+  initial={{ x: 50, opacity: 0 }}
+  animate={{ x: 0, opacity: 1 }}
+  transition={{ duration: 1, delay: 0.5 }}
+  className="hidden md:flex justify-center"
+>
+  <Image
+    src="/img/hero/hero-img.png"
+    alt="Hero Logo"
+    width={800}
+    height={800}
+    className="w-full h-auto rounded-2xl object-cover"
+    priority
+  />
+</motion.div>
   </div>
 </div>
     </section>
