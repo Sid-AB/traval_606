@@ -1,6 +1,7 @@
 "use client";
 import React ,{useState,useEffect}from "react";
 import TripCard from "./TripCard";
+import ModelInfo from "./modelPack";
 
 const sampleTrips = [
   {
@@ -52,9 +53,13 @@ const sampleTrips = [
 
 export default function TripsList() {
   const [alltrips,setAlltrips]=useState(sampleTrips)
+  const [showInfo, setShowInfo] = useState(false);
+  const [packid,setPack]=useState(0)
   const handleBook = (trip) => {
     // replace with your booking logic (modal, route navigation, API call...)
-    alert(`Booked trip to ${trip.destination} — ${trip.days} days — $${trip.price}`);
+    setShowInfo(true)
+    setPack(trip)
+    //alert(`Booked trip to ${trip.destination} — ${trip.days} days — $${trip.price}`);
   };
   
 
@@ -109,10 +114,23 @@ export default function TripsList() {
             price={t.price}
             package_info={t.package_info}
             days={t.days}
-            onBook={() => handleBook(t)}
+            onBook={() => handleBook(t.id)}
           />
         ))}
       </div>
+     {showInfo && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-7xl max-h-[95vh] overflow-y-auto">
+            <button
+              onClick={() => setShowInfo(false)}
+              className="absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1"
+            >
+              ✕
+            </button>
+            <ModelInfo idpack={packid} onClose={()=>setPack(null)}/>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
